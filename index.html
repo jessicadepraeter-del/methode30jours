@@ -315,6 +315,7 @@
     .faq{padding-top:67px;}
     .dms{padding-bottom:12px;}
   }
+#commande{scroll-margin-top:24px;}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -343,7 +344,7 @@ src="https://www.facebook.com/tr?id=2659255974283931&ev=PageView&noscript=1"
     <p class="lead">Installe le système boosté par l'IA qui te livre 30 jours de Reels et carrousels prêts à publier, clé en main.</p>
 
     <div class="hero-cta-row">
-      <a href="https://jessicadepraeter.thrivecart.com/la-methode-30-jours/" class="btn btn-primary" style="color:#fff;text-decoration:none;">Télécharger maintenant <span class="emoji">→</span></a>
+      <a href="#commande" class="btn btn-primary js-to-checkout" style="color:#fff;text-decoration:none;">Télécharger maintenant <span class="emoji">→</span></a>
       <div class="price-tag"><span class="old">49€</span><span class="new">19€</span></div>
     </div>
 
@@ -449,7 +450,7 @@ src="https://www.facebook.com/tr?id=2659255974283931&ev=PageView&noscript=1"
         <li><span class="emoji">✅</span> Bonus · Prompt bio qui convertit</li>
       </ul>
       <div class="receipt-total-simple"><span class="final">19€</span></div>
-      <a href="https://jessicadepraeter.thrivecart.com/la-methode-30-jours/" class="btn btn-primary" style="color:#fff;text-decoration:none;">Je fonce</a>
+      <a href="#commande" class="btn btn-primary js-to-checkout" style="color:#fff;text-decoration:none;">Je fonce</a>
       <p class="note">Des dizaines d'heures économisées. Bye l'audience silencieuse.</p>
     </div>
   </div>
@@ -560,14 +561,15 @@ src="https://www.facebook.com/tr?id=2659255974283931&ev=PageView&noscript=1"
   });
 </script>
 <script>
-  // Transmet les paramètres fbclid / UTM de l'URL d'entrée vers les liens ThriveCart
-  document.addEventListener('DOMContentLoaded', function() {
-    const params = window.location.search;
-    if (params) {
-      document.querySelectorAll('a[href*="thrivecart.com"]').forEach(function(link) {
-        link.href += (link.href.includes('?') ? '&' : '?') + params.substring(1);
-      });
-    }
+  // Tous les CTA font défiler la page jusqu'au checkout ThriveCart intégré
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href="#commande"]');
+    if(!link) return;
+    var target = document.getElementById('commande');
+    if(!target) return;
+    e.preventDefault();
+    var y = target.getBoundingClientRect().top + window.pageYOffset - 24;
+    window.scrollTo({ top: y, behavior: 'smooth' });
   });
 </script>
 
